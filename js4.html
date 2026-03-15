@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Користувацьке введення</title>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+        let output = document.getElementById("output")
+
+        let name = prompt("Введіть ваше ім'я")
+        let birthYear = Number(prompt("Введіть рік народження"))
+        let city = prompt("Введіть ваше місто")
+
+        let currentYear = new Date().getFullYear()
+        let age = currentYear - birthYear
+
+        output.innerHTML += `<p>Привіт, ${name}!</p>`
+        output.innerHTML += `<p>Вам ${age} років.</p>`
+
+        let ageGroup = ""
+        if (age < 13) {
+            ageGroup = "дитина"
+        } else if (age < 18) {
+            ageGroup = "підліток"
+        } else if (age < 60) {
+            ageGroup = "дорослий"
+        } else {
+            ageGroup = "літня людина"
+        }
+
+        output.innerHTML += `<p>Ви належите до групи: ${ageGroup}</p>`
+
+        let country = "Україна"
+        let capital = "Київ"
+
+        let isCapital = city.trim().toLowerCase() === capital.toLowerCase()
+        output.innerHTML += `<p>Ваше місто є столицею ${country}: ${isCapital}</p>`
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>js2</title>
+</head>
+<body>
+   
+
+    <script>
+        let a = Number(prompt("Введіть перше число"))
+        let b = Number(prompt("Введіть друге число"))
+        let c = Number(prompt("Введіть третє число"))
+
+        let average = (a + b + c) / 3
+        console.log("Середнє:", average)
+
+        let modA = Math.abs(a)
+        console.log("Модуль першого числа:", modA)
+
+        let up = Math.ceil(b)
+        console.log("Округлення в більшу сторону:", up)
+
+        let down = Math.floor(c)
+        console.log("Округлення в меншу сторону:", down)
+
+        let power = a ** 2
+        console.log("a у квадраті:", power)
+
+        console.log("Середнє ділиться на 5:", average % 5 === 0)
+        console.log("Середнє ділиться на 7:", average % 7 === 0)
+
+        if (a + b > c && a + c > b && b + c > a) {
+            console.log("Трикутник може існувати")
+        } else {
+            console.log("Трикутник не може існувати")
+        }
+    </script>
+</body>
+</html>
