@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Калькулятор</title>
+</head>
+<body>
+
+<script>
+let a = Number(prompt("Введіть перше число"));
+let b = Number(prompt("Введіть друге число"));
+let o = prompt("Введіть операцію (+, -, *, /)");
+let result;
+
+switch (o) {
+    case "+":
+        result = a + b;
+        break;
+    case "-":
+        result = a - b;
+        break;
+    case "*":
+        result = a * b;
+        break;
+    case "/":
+        result = a / b;
+        break;
+}
+
+alert(result);
+</script>
+
+</body>
+</html>

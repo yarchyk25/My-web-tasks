@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Вгадай число</title>
+</head>
+<body>
+
+<script>
+let rand = Math.floor(Math.random() * 100) + 1;
+let a;
+
+do {
+    a = Number(prompt("Вгадайте число від 1 до 100"));
+
+    if (a < rand) {
+        alert("Загадане число більше");
+    } else if (a > rand) {
+        alert("Загадане число менше");
+    } else {
+        alert("Вітаємо! Ви вгадали число!");
+    }
+
+} while (a !== rand);
+</script>
+
+</body>
+</html>
