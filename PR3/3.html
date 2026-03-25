@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Товари</title>
+</head>
+
+<body>
+
+    <script>
+
+        let products = [
+            { name: "Хліб", category: "Їжа" },
+            { name: "Масло", category: "Їжа" },
+            { name: "Телефон", category: "Гаджети" },
+            { name: "Ноутбук", category: "Гаджети" },
+            { name: "Пальто", category: "Одяг" }
+        ]
+
+        let groups = {}
+
+        for (let i = 0; i < products.length; i++) {
+
+            let category = products[i].category
+
+            if (!groups[category]) {
+                groups[category] = []
+            }
+
+            groups[category].push(products[i].name)
+
+        }
+
+        console.log(groups)
+
+        for (let category in groups) {
+            console.log(category + ": " + groups[category])
+        }
+
+    </script>
+
+</body>
+
+</html>

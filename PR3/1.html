@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Масив</title>
+</head>
+
+<body>
+
+    <script>
+
+        let numbers = [5, 2, 9, 1, 7]
+
+        let sum = 0
+        let max = numbers[0]
+        let min = numbers[0]
+
+        for (let i = 0; i < numbers.length; i++) {
+
+            sum += numbers[i]
+
+            if (numbers[i] > max) {
+                max = numbers[i]
+            }
+
+            if (numbers[i] < min) {
+                min = numbers[i]
+            }
+
+        }
+
+        let average = sum / numbers.length
+
+        numbers.sort()
+
+        console.log(numbers)
+        console.log("Середнє:", average)
+        console.log("Максимум:", max)
+        console.log("Мінімум:", min)
+
+    </script>
+
+</body>
+
+</html>

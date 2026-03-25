@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Люди</title>
+</head>
+
+<body>
+
+    <script>
+
+        let users = [
+            {
+                name: "Оксана",
+                age: 17
+            },
+            {
+                name: "Марк",
+                age: 21
+            },
+            {
+                name: "Петро",
+                age: 19
+            },
+            {
+                name: "Марія",
+                age: 16
+            }
+        ]
+
+        let old = []
+        let names = []
+        let sum = 0
+
+        for (let i = 0; i < users.length; i++) {
+
+            if (users[i].age > 18) {
+                old.push(users[i])
+            }
+
+            names.push(users[i].name)
+
+            sum += users[i].age
+        }
+
+        let average = sum / users.length
+
+        console.log("Користувачі:", users)
+        console.log("Повнолітні:", old)
+        console.log("Імена:", names)
+        console.log("Середній вік:", average)
+
+    </script>
+
+</body>
+
+</html>

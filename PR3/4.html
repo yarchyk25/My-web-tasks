@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Студенти</title>
+</head>
+
+<body>
+
+    <script>
+
+        let students = {
+            Джон: { math: 10, english: 11, history: 2 },
+            Катерина: { math: 12, english: 12, history: 12 },
+            Джейкоб: { math: 3, english: 2, history: 0 }
+        }
+
+        for (let name in students) {
+
+            let grades = students[name]
+
+            let sum = 0
+            let count = 0
+
+            for (let subject in grades) {
+                sum += grades[subject]
+                count++
+            }
+
+            let average = sum / count
+
+            console.log(name + " — середній бал: " + average)
+
+        }
+
+    </script>
+
+</body>
+
+</html>
