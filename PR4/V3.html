@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Таймер</title>
+</head>
+
+<body>
+
+    <input id="timeInput" placeholder="секунди">
+    <button id="startBtn">Старт</button>
+    <button id="pauseBtn">Пауза</button>
+    <button id="plusBtn">Збільшити час</button>
+    <button id="minusBtn">Зменшити час</button>
+
+    <h2 id="timer">0</h2>
+
+    <script>
+
+        let input = document.getElementById("timeInput");
+        let startBtn = document.getElementById("startBtn");
+        let pauseBtn = document.getElementById("pauseBtn");
+        let plusBtn = document.getElementById("plusBtn");
+        let minusBtn = document.getElementById("minusBtn");
+        let timer = document.getElementById("timer");
+
+        let time = 0;
+        let interval = null;
+
+        startBtn.addEventListener("click", function () {
+
+            let value = Number(input.value);
+
+            if (isNaN(value) || value <= 0) {
+                alert("Введіть число більше 0");
+                return;
+            }
+
+            time = value;
+            timer.textContent = time;
+
+            if (interval) {
+                clearInterval(interval);
+            }
+
+            interval = setInterval(function () {
+
+                time--;
+                timer.textContent = time;
+
+                if (time <= 0) {
+                    clearInterval(interval);
+                    timer.textContent = "Час вийшов!";
+                }
+
+            }, 1000);
+
+        });
+
+        pauseBtn.addEventListener("click", function () {
+            clearInterval(interval);
+        });
+
+        plusBtn.addEventListener("click", function () {
+            time += 10;
+            timer.textContent = time;
+        });
+
+        minusBtn.addEventListener("click", function () {
+
+            if (time > 10) {
+                time -= 10;
+            } else {
+                time = 0;
+            }
+
+            timer.textContent = time;
+
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Варіант 1</title>
+</head>
+
+<body>
+
+    <input id="input">
+    <button id="addBtn">Додати</button>
+    <button id="sortBtn">Сортувати</button>
+
+    <ul id="list"></ul>
+
+    <script>
+
+        let input = document.getElementById("input");
+        let addBtn = document.getElementById("addBtn");
+        let sortBtn = document.getElementById("sortBtn");
+        let list = document.getElementById("list");
+
+        addBtn.addEventListener("click", function () {
+
+            let value = input.value;
+
+            if (value === "") {
+                alert("Введіть текст");
+                return;
+            }
+
+            let li = document.createElement("li");
+
+            li.textContent = value;
+
+            li.addEventListener("click", function () {
+                li.remove();
+            });
+
+            list.appendChild(li);
+
+            input.value = "";
+
+        });
+
+        sortBtn.addEventListener("click", function () {
+
+            let items = Array.from(list.children);
+
+            items.sort(function (a, b) {
+
+                let A = a.textContent;
+                let B = b.textContent;
+
+                let numA = Number(A);
+                let numB = Number(B);
+
+                let isNumA = !isNaN(numA);
+                let isNumB = !isNaN(numB);
+
+                if (isNumA && isNumB) {
+                    return numA - numB;
+                }
+
+                if (isNumA && !isNumB) {
+                    return -1;
+                }
+
+                if (!isNumA && isNumB) {
+                    return 1;
+                }
+
+                if (A > B) {
+                    return 1;
+                }
+
+                if (A < B) {
+                    return -1;
+                }
+
+                return 0;
+
+            });
+
+            list.innerHTML = "";
+
+            items.forEach(function (item) {
+                list.appendChild(item);
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
