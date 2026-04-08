@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Форма користувача (macOS стиль)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            background: #f2f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            display: flex;
+            gap: 40px;
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1c1c1e;
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: 1px solid #d1d1d6;
+            border-radius: 12px;
+            font-size: 14px;
+            background: #fafafa;
+        }
+
+        input:focus {
+            border-color: #8e8e93;
+            outline: none;
+            box-shadow: 0 0 6px rgba(142, 142, 147, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            background: #e5e5ea;
+            color: #1c1c1e;
+        }
+
+        button:hover {
+            background: #d1d1d6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="column">
+            <h2>Реєстрація</h2>
+            <input id="name" placeholder="Ім'я">
+            <input id="email" placeholder="Email">
+            <input id="phone" placeholder="Телефон">
+            <input id="password" type="password" placeholder="Пароль">
+            <button id="saveBtn">Зберегти</button>
+        </div>
+
+        <div class="column">
+            <h2>Авторизація</h2>
+            <input id="loginEmail" placeholder="Email">
+            <input id="loginPassword" type="password" placeholder="Пароль">
+            <button id="loginBtn">Увійти</button>
+
+            <h2>Редагування</h2>
+            <input id="editName" placeholder="Нове ім'я">
+            <input id="editPhone" placeholder="Новий телефон">
+            <button id="updateBtn">Оновити</button>
+
+            <button id="clearBtn">Очистити дані</button>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () { loadUser(); });
+
+        let saveBtn = document.getElementById("saveBtn");
+        let loginBtn = document.getElementById("loginBtn");
+        let updateBtn = document.getElementById("updateBtn");
+        let clearBtn = document.getElementById("clearBtn");
+
+        saveBtn.addEventListener("click", function () {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+            let password = document.getElementById("password").value;
+
+            if (name == "" || email == "" || phone == "" || password == "") {
+                alert("Заповніть всі поля");
+                return;
+            }
+
+            let user = { name, email, phone, password };
+            localStorage.setItem("user", JSON.stringify(user));
+
+            alert("Дані збережені");
+        });
+
+        loginBtn.addEventListener("click", function () {
+            let email = document.getElementById("loginEmail").value;
+            let password = document.getElementById("loginPassword").value;
+            let user = JSON.parse(localStorage.getItem("user"));
+
+            if (user == null) { alert("Користувача немає"); return; }
+
+            if (email == user.email && password == user.password) {
+                alert("Успішний вхід");
+            } else {
+                alert("Невірні дані");
+            }
+        });
+
+        updateBtn.addEventListener("click", function () {
+            let newName = document.getElementById("editName").value;
+            let newPhone = document.getElementById("editPhone").value;
+            let user = JSON.parse(localStorage.getItem("user"));
+
+            if (user == null) { alert("Немає даних"); return; }
+
+            if (newName != "") user.name = newName;
+            if (newPhone != "") user.phone = newPhone;
+            localStorage.setItem("user", JSON.stringify(user));
+
+            alert("Дані змінено");
+        });
+
+        clearBtn.addEventListener("click", function () {
+            localStorage.removeItem("user");
+            alert("Дані видалено");
+        });
+
+        function loadUser() {
+            let user = JSON.parse(localStorage.getItem("user"));
+            if (user != null) {
+                document.getElementById("name").value = user.name;
+                document.getElementById("email").value = user.email;
+                document.getElementById("phone").value = user.phone;
+                document.getElementById("password").value = user.password;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
