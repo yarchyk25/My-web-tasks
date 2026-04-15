@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Користувачі</title>
+</head>
+
+<body>
+
+    <h2>Список користувачів</h2>
+
+    <button id="loadBtn">Завантажити користувачів</button>
+
+    <ul id="usersList"></ul>
+
+    <p id="error"></p>
+
+    <script>
+
+        document.getElementById("loadBtn").addEventListener("click", function () {
+
+            fetch("https://jsonplaceholder.typicode.com/users")
+
+                .then(function (response) {
+                    return response.json();
+                })
+
+                .then(function (users) {
+
+                    let list = document.getElementById("usersList");
+                    list.innerHTML = "";
+
+                    users.forEach(function (user) {
+
+                        let li = document.createElement("li");
+
+                        li.textContent = user.name + " — " + user.email;
+
+                        list.appendChild(li);
+
+                    });
+
+                })
+
+                .catch(function () {
+
+                    document.getElementById("error").textContent = "Помилка завантаження";
+
+                });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
